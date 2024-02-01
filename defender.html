@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Jogo de Penaltis</title>
+    <style>
+
+        #cheatarget-button {
+            position: absolute;
+            top: 210px;
+            left: 2px;
+            padding: 5px;
+            background-color: #000000;
+            color: #000000;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        #button-next{
+            position: absolute;
+            display: none;
+            top: 10px;
+            left: 680px;
+            padding: 25px;
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 15px;
+            cursor: pointer;
+            display: none;
+        }
+
+
+    </style>
+
+
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game-container"></div>
+    <button id="button-next">Next</button>
+    <button id="cheatarget-button"></button>
+    <script src="phaser.min.js"></script>
+    <script src="game.js"></script>
+    <script>
+    </script>
+
+    <script type="text/javascript">
+
+        var player;
+        var bola;
+        var platform_gk;
+        var platform_pk;
+        var cursors;
+        var Defended = false;
+        var score= [0, 0];
+        var score1 = 0;
+        var score2 = 0;
+        var scoreText;
+        var destinoX;
+        var destinoY;
+        var distancia;
+        var velocidade;
+        var duracao;
+        var numaleatorio;
+        var area;
+        var audio;
+        var estadio;
+        var cheatbola;
+        var clicou = 0;
+        var goalkeeper;
+        var round;
+        var roundText;
+        var diffText;
+
+        var config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 300 },
+                    debug: false
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+    
+        var game = new Phaser.Game(config);
+
+        function preload() {
+            this.load.image('campo_blue', 'assets/campo_blue.png');
+            this.load.image('campogolo_blue', 'assets/campogolo_blue.png');
+            this.load.image('ground', 'assets/platform.png');
+            this.load.image('ball', 'assets/ball.png');
+            this.load.image('cheatball', 'assets/cheatball.png');
+            this.load.image('fireball', 'assets/fireball.png');
+            this.load.image('ronaldoo', 'assets/ronaldoo.png');
+            this.load.audio('Goal', ['assets/Goal.mp3']);
+            this.load.audio('Apito', ['assets/apito.mp3']);
+            this.load.audio('torcida', ['assets/torcida.mp3']);
+            this.load.audio('errou', ['assets/errou.mp3']);
+            this.load.spritesheet('gk_red', 'assets/gk_red.png', {frameWidth: 127, frameHeight: 127});
+            this.load.spritesheet('player_blue', 'assets/player_blue.png', {frameWidth: 60, frameHeight: 131})
+        }
+
+        function create() {
+
+            platform_gk = this.physics.add.staticGroup();
+            platform_pk = this.physics.add.staticGroup();
+            platform_gk.create(400, 360, 'ground').setScale(2).refreshBody();
+            platform_pk.create(400, 625, 'ground').setScale(2).refreshBody();
+            estadio = this.add.sprite(400, 300, 'campo_blue');
+            audio = this.sound.add('Goal');
+            arbitro = this.sound.add('Apito');
+            torcida = this.sound.add('torcida');
+            errou = this.sound.add('errou');
+
+            goalkeeper = this.physics.add.sprite(400, 265, 'gk_red');
+            bola = this.physics.add.sprite(400, 582, 'ball');
+            player = this.physics.add.sprite(370, 535, 'player_blue');
+
+            
+            goalkeeper.setBounce(0.2);
+            goalkeeper.setCollideWorldBounds(true);
+            bola.setCollideWorldBounds(true);
+            player.setCollideWorldBounds(true);
+
+
+            destinoX = Phaser.Math.Between(175, 630);
+            destinoY = Phaser.Math.Between(112, 313);
+            distancia = Phaser.Math.Distance.Between(bola.x, bola.y, destinoX, destinoY);
+            
+
+            velocidade = getRandomInt(400, 1000);
+            duracao = distancia / velocidade * 1000;
+
+            score1 = new URLSearchParams(window.location.search).get('score1') ? parseInt(new URLSearchParams(window.location.search).get('score1')) : 0;
+            score2 = new URLSearchParams(window.location.search).get('score2') ? parseInt(new URLSearchParams(window.location.search).get('score2')) : 0;
+            round = new URLSearchParams(window.location.search).get('round') ? parseInt(new URLSearchParams(window.location.search).get('round')) : 1;
+            
+            var rectangle = this.add.graphics();
+            rectangle.fillStyle(0xFFffff, 1); 
+            rectangle.fillRoundedRect(344, 10, 120, 70, 10);
+            scoreText = this.add.text(360, 24, score1 + ":" + score2, {
+                fontSize: '50px', fill: '#000000'
+            });
+
+            let rectangle2 = this.add.graphics();
+            rectangle2.fillStyle(0xFFffff, 1); 
+            rectangle2.fillRoundedRect(26, 10, 180, 40, 10);
+
+            roundText = this.add.text(58, 16, "Round " + round, {
+                fontSize: '30px', fill: '#000000'
+            });
+            
+           
+            cheatbola = this.add.image(destinoX, destinoY, 'cheatball');
+            cheatbola.visible = false;
+
+            var botao1 = document.getElementById('cheatarget-button');
+            botao1.addEventListener('click', () => {
+                adicionarCheatarget();
+            });
+
+            function adicionarCheatarget(){
+                cheatbola.visible = true;
+
+                setTimeout(() => {
+                    cheatbola.visible = false;
+                }, 500);   
+            }
+
+            
+            this.tweens.add({
+                targets: bola,
+                x: destinoX,
+                y: destinoY,
+                duration: duracao,
+                delay: 2000,
+                ease: 'Linear',
+                onComplete: function () {
+                    
+                    update_score(bola);
+                    
+                }
+            });
+
+            torcida.play();
+            arbitro.play();
+            
+            
+            this.anims.create({
+                key: 'shoot',
+                frames: this.anims.generateFrameNumbers('player_blue', { start: 2, end: 3}),
+                frameRate: 0.5,
+                
+            });
+
+            player.anims.play('shoot', true);
+            player.setFrame(2);
+            setTimeout(function(){
+                player.setFrame(3);
+
+                setTimeout(function(){
+                    player.setFrame(2);
+                }, 100);
+            }, 4000);
+
+
+            this.anims.create({
+                key: 'left',
+                frames: this.anims.generateFrameNumbers('gk_red', { start: 1, end: 2 }),
+                frameRate: 3,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'turn',
+                frames: [{ key: 'gk_red', frame: 0 }],
+                frameRate: 20
+            });
+
+            this.anims.create({
+                key: 'right',
+                frames: this.anims.generateFrameNumbers('gk_red', { start: 4, end: 5 }),
+                frameRate: 3,
+                repeat: -1
+            });
+
+            var seq = [0, 3];
+            
+            var podePular = true;
+
+            
+            this.anims.create({
+                key: 'jump',
+                frames: [{ key: 'gk_red', frame: 3 }],
+                frameRate: 5,
+                repeat: -1
+                }); 
+        
+
+            cursors = this.input.keyboard.createCursorKeys();
+
+
+            this.physics.add.collider(goalkeeper, platform_gk);
+            this.physics.add.collider(bola, platform_gk);
+            this.physics.add.collider(bola, platform_pk);
+            
+
+            setTimeout(() => {
+                document.getElementById('button-next').style.display = 'block';
+            }, 5000);
+
+
+            round++;
+
+            
+            document.getElementById('button-next').addEventListener('click', function () {
+            var diff = Math.abs(score1 - score2);
+
+            if( (round >= 6 && diff > 0) ||  (round == 5 && diff > 1) || (round == 4 && diff > 2) ){
+                if(score1 > score2){
+                    window.location.href = "vencedor.html";
+                }
+                else{
+                    window.location.href = "perdedor.html";
+                }
+            }
+
+            else{
+                window.location.href = "chutar.html?score1=" + score1 + "&score2=" + score2 + "&round="  + round;
+            }
+
+                
+            
+            
+        });
+        }
+
+        function hitBola(goalkeeper, bola) {
+            goalkeeper.physics.pause();
+            goalkeeper.anims.play('turn');
+            Defended = true;
+        }
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function update_score(bola) {
+            if (Defended == false && bola.x >= 175 && bola.x <= 630 && bola.y >= 112 && bola.y <= 313) {
+                score2++;
+                scoreText.setText(score1 + ":" + score2);
+                estadio.setTexture('campogolo_blue');
+                audio.play();
+            }
+            else {
+                errou.play();
+                scoreText.setText(score1 + ":" + score2);
+                
+            }
+            
+        }
+
+        function update(time, delta) {
+            var distance = Phaser.Math.Distance.Between(bola.x, bola.y, destinoX, destinoY);
+
+            if (distance <= 40) {
+
+                if(!this.colliderGkBola){
+                    this.colliderGkBola = this.physics.add.collider(goalkeeper, bola, hitBola, null, this);
+                }
+            }
+
+            this.tempoDecorrido += delta;
+
+            if(cursors.up.isDown){
+                goalkeeper.setVelocityY(-100);
+
+                goalkeeper.anims.play('jump', true);
+
+            }
+
+            if (cursors.left.isDown) {
+                goalkeeper.setVelocityX(-200);
+
+                goalkeeper.anims.play('left', true);
+            }
+            else if (cursors.right.isDown) {
+                goalkeeper.setVelocityX(200);
+
+                goalkeeper.anims.play('right', true);
+            }
+            else {
+                goalkeeper.setVelocityX(0);
+
+                goalkeeper.anims.play('turn');
+            }
+
+
+            if (cursors.up.isDown && !cursors.left.isDown && !cursors.right.isDown && !cursors.down.isDown) {
+                goalkeeper.setVelocityY(-200);
+
+                goalkeeper.anims.play('jump', true);
+                
+            }
+
+            if(cursors.up.isDown && goalkeeper.body.touching.down){
+                goalkeeper.setVelocityY(-330);
+            }
+
+            if(goalkeeper.y < 170){
+                goalkeeper.setY(170);
+            }
+
+            if(goalkeeper.body.touching.down){
+                this.podePular = true;
+            }
+
+            if(cursors.up.isDown && this.podePular){
+                goalkeeper.setVelocityY(-300);
+                this.podePular = false;
+            }
+
+            var toca_chao = goalkeeper.body.touching.down;
+            if(toca_chao){
+                if (Phaser.Input.Keyboard.JustDown(cursors.up)) {
+                    goalkeeper.setVelocityY(-300); 
+                }
+            }     
+            
+        }
+
+    createGame();
+
+    for (var i = 0; i < 5; i++) {
+        playGame();
+    }
+
+    </script>
+
+</body>
+
+</html>
