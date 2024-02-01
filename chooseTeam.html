@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose your Team</title>
+    <style>
+        body {
+            background-image: url('assets/championsLeague/background.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+
+        #team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .team-card {
+            background-image: url('assets/championsLeague/backgroundCard.jpg');
+            border: 2px solid #333;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            width: 200px; /* Largura fixa para todos os cards */
+            box-sizing: border-box;
+            overflow: hidden;
+            color: rgb(14, 187, 245);
+        }
+
+        .team-card:hover {
+            transform: scale(1.05);
+        }
+
+        h2, p {
+            margin: 5px 0;
+            color:  rgb(14, 187, 245);
+        }
+
+        h2 {
+            white-space: nowrap; /* Evitar quebras de linha no nome da equipe */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Adicionar reticências para indicar texto truncado */
+            cursor: default; /* Remover o cursor de texto para o nome da equipe */
+        }
+
+        .team-card:hover h2 {
+            white-space: normal; /* Mostrar o texto completo no hover */
+            overflow: visible;
+            text-overflow: initial;
+        }
+
+        img {
+            max-height: 80px;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="team-container"></div>
+
+<script>
+    // Função para fazer uma requisição AJAX para carregar o JSON
+    function carregarJSON(callback) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const data = JSON.parse(this.responseText);
+                callback(data);
+            }
+        };
+        xhttp.open("GET", "teamsChampionsLeague.json", true);
+        xhttp.send();
+    }
+
+    // Função para criar os cards com base nos dados do JSON
+    function criarCards(data) {
+        const teamContainer = document.getElementById("team-container");
+
+        data.teams.forEach((team, index) => {
+            const card = document.createElement("div");
+            card.className = "team-card";
+            card.onclick = function () {
+                selecionarEquipe(team.name);
+            };
+
+            card.innerHTML = `
+                <h2>${team.name}</h2>
+                <p>Country: ${team.country}</p>
+                <p>Rating: ${team.rating}</p>
+                <img src="${team.image}" alt="${team.name}"/>
+            `;
+
+            teamContainer.appendChild(card);
+        });
+    }
+
+    // Função para processar a seleção da equipe
+    function selecionarEquipe(nomeEquipe) {
+        alert('Equipe selecionada: ' + nomeEquipe);
+        // Adicione a lógica para processar a seleção da equipe aqui (por exemplo, redirecionamento para a página do jogo)
+    }
+
+    // Carregar JSON e criar os cards ao carregar a página
+    document.addEventListener("DOMContentLoaded", function () {
+        carregarJSON(criarCards);
+    });
+</script>
+
+</body>
+</html>

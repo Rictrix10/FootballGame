@@ -1,0 +1,52 @@
+{
+  "teams": [
+    {
+      "name": "Barcelona",
+      "country": "Spain",
+      "rating": 90,
+      "image": "assets/teams/barcelona.png"
+    },
+    {
+      "name": "Bayern Munich",
+      "country": "Germany",
+      "rating": 93,
+      "image": "assets/teams/bayern.png"  
+    },
+    {
+      "name": "Benfica",
+      "country": "Portugal",
+      "rating": 86,
+      "image": "assets/teams/benfica.png"  
+    },
+    {
+      "name": "Liverpool",
+      "country": "England",
+      "rating": 92,
+      "image": "assets/teams/liverpool.png"  
+    },
+    {
+      "name": "Man.United",
+      "country": "England",
+      "rating": 88,
+      "image": "assets/teams/manUnited.png"  
+    },
+    {
+      "name": "AC Milan",
+      "country": "Italy",
+      "rating": 89,
+      "image": "assets/teams/milan.png"  
+    },
+    {
+      "name": "Porto",
+      "country": "Portugal",
+      "rating": 85,
+      "image": "assets/teams/porto.png"  
+    },
+    {
+      "name": "Real Madrid",
+      "country": "Spain",
+      "rating": 95,
+      "image": "assets/teams/realMadrid.png"  
+    }
+  ]
+}

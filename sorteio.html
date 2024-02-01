@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions League</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .bracket-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .round {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .matchup {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .team {
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #fff;
+            margin-right: 20px;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .connector {
+            width: 20px;
+            height: 2px;
+            background-color: #333;
+            margin-right: 10px;
+            margin-left: 10px;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bracket-container">
+    <div class="round">
+        <!-- Quartas de Final -->
+        <div class="matchup" id="matchup1">
+            <!-- Equipes lado esquerdo -->
+            <div class="team" onclick="selecionarEquipe('Equipe 1A')" id="team1A">Equipe 1A</div>
+            <div class="team" onclick="selecionarEquipe('Equipe 2A')" id="team2A">Equipe 2A</div>
+            <div class="connector"></div>
+
+            <!-- Equipes lado direito -->
+            <div class="team" onclick="selecionarEquipe('Equipe 1B')" id="team1B">Equipe 1B</div>
+            <div class="team" onclick="selecionarEquipe('Equipe 2B')" id="team2B">Equipe 2B</div>
+        </div>
+
+        <div class="matchup" id="matchup2">
+            <!-- Equipes lado esquerdo -->
+            <div class="team" onclick="selecionarEquipe('Equipe 3A')" id="team3A">Equipe 3A</div>
+            <div class="team" onclick="selecionarEquipe('Equipe 4A')" id="team4A">Equipe 4A</div>
+            <div class="connector"></div>
+
+            <!-- Equipes lado direito -->
+            <div class="team" onclick="selecionarEquipe('Equipe 3B')" id="team3B">Equipe 3B</div>
+            <div class="team" onclick="selecionarEquipe('Equipe 4B')" id="team4B">Equipe 4B</div>
+        </div>
+    </div>
+
+    <!-- Semifinais -->
+    <div class="round">
+        <div class="matchup" id="matchup3">
+            <!-- Vencedor Quartas de Final 1 -->
+            <div class="team" id="winner1">Vencedor 1</div>
+            <div class="connector"></div>
+
+            <!-- Vencedor Quartas de Final 2 -->
+            <div class="team" id="winner2">Vencedor 2</div>
+        </div>
+    </div>
+
+    <!-- Final -->
+    <div class="round">
+        <div class="matchup" id="matchup4">
+            <!-- Vencedor Semifinal 1 -->
+            <div class="team" id="champion">Campeão</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function selecionarEquipe(nomeEquipe) {
+        alert('Equipe selecionada: ' + nomeEquipe);
+        // Adicione a lógica para preencher os vencedores e avançar para a próxima fase
+        // por exemplo, atualizando o texto dos vencedores nas divs correspondentes
+        document.getElementById("winner1").innerText = nomeEquipe;
+    }
+</script>
+
+</body>
+</html>
