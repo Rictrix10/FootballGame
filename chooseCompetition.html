@@ -16,7 +16,7 @@
         }
 
 
-        #play-button {
+        #champions-league-button {
             width: 200px;
             height: 50px;
             margin: 0 auto;
@@ -33,7 +33,7 @@
             cursor: pointer;
         }
 
-        #quit-button {
+        #world-cup-button {
             width: 200px;
             height: 50px;
             margin: 0 auto;
@@ -54,26 +54,16 @@
 
 <body>
     <h1>Penalty Duel Masters</h1>
-    <button id="play-button">Jogar</button>
-    <button id="quit-button">Sair</button>
+    <button id="champions-league-button">Champions League</button>
+    <button id="world-cup-button">World Cup</button>
     <script>
 
     </script>
     <script src="phaser.min.js"></script>
     <script src="game.js"></script>
     <script>
-        /*
-        document.getElementById("play-button").addEventListener("click", function () {
-            window.location.href = "chutar.html";
-        });
-        */
-
-        document.getElementById("play-button").addEventListener("click", function () {
-            window.location.href = "chooseCompetition.html";
-        });
-
-        document.getElementById("quit-button").addEventListener("click", function () {
-            window.close();
+        document.getElementById("champions-league-button").addEventListener("click", function () {
+            window.location.href = "chooseTeam.html";
         });
 
 
