@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabelas Responsivas de Futebol</title>
+    <style>
+        body {
+            background-image: url('assets/championsLeague/background.jpg');
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .tabelas-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .tabela-grupo {
+            width: 48%;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+            color: white;
+            background-color: rgb(4, 4, 125);
+        }
+        th {
+            background-color: #0cb6ff;
+            color: black;
+        }
+        @media (max-width: 600px) {
+            .tabelas-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tabela-grupo {
+                width: 100%;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+                width: 100%;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                margin: 0 0 1rem 0;
+            }
+            tr:nth-child(odd) {
+                background: #f2f2f2;
+            }
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+            }
+            td:before {
+                position: absolute;
+                top: 0;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                content: attr(data-label);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabelas de Futebol</h1>
+    <div class="tabelas-container">
+        <!-- Tabela Grupo A -->
+        <div class="tabela-grupo">
+            <h2>Grupo A</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GS</th>
+                        <th>GC</th>
+                        <th>GD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Team">Team 1</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 2</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 3</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 4</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tabela Grupo B -->
+        <div class="tabela-grupo">
+            <h2>Grupo B</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GS</th>
+                        <th>GC</th>
+                        <th>GD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Team">Team 1</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 2</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 3</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 4</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tabela Grupo C -->
+        <div class="tabela-grupo">
+            <h2>Grupo C</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GS</th>
+                        <th>GC</th>
+                        <th>GD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Team">Team 1</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 2</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 3</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 4</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tabela Grupo D -->
+        <div class="tabela-grupo">
+            <h2>Grupo D</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GS</th>
+                        <th>GC</th>
+                        <th>GD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Team">Team 1</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 2</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 3</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 4</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tabela Grupo E -->
+        <div class="tabela-grupo">
+            <h2>Grupo E</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GS</th>
+                        <th>GC</th>
+                        <th>GD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Team">Team 1</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 2</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 3</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 4</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tabela Grupo F -->
+        <div class="tabela-grupo">
+            <h2>Grupo F</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GS</th>
+                        <th>GC</th>
+                        <th>GD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Team">Team 1</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 2</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 3</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 4</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tabela Grupo G -->
+        <div class="tabela-grupo">
+            <h2>Grupo G</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GS</th>
+                        <th>GC</th>
+                        <th>GD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Team">Team 1</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 2</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 3</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 4</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tabela Grupo H -->
+        <div class="tabela-grupo">
+            <h2>Grupo H</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GS</th>
+                        <th>GC</th>
+                        <th>GD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Team">Team 1</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 2</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 3</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Team">Team 4</td>
+                        <td data-label="P">0</td>
+                        <td data-label="W">0</td>
+                        <td data-label="D">0</td>
+                        <td data-label="L">0</td>
+                        <td data-label="GS">0</td>
+                        <td data-label="GC">0</td>
+                        <td data-label="GD">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
